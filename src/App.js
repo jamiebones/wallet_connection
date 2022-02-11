@@ -59,11 +59,12 @@ if (typeof window !== 'undefined') {
 
 
 function App() {
-  const { account: { provider,
+  const { account, setAccountDetails } = useWallet();
+  const { provider,
     address,
     signer,
     web3Provider,
-    network }, setAccountDetails } = useWallet()
+    network } = account;
 
 
 const connect = useCallback(async function () {
@@ -99,7 +100,8 @@ const disconnect = useCallback(
       network: null
  }
  setAccountDetails(accountDetails);
-  },
+  
+},
   [provider]
 )
 
@@ -119,11 +121,8 @@ const disconnect = useCallback(
         // eslint-disable-next-line no-console
         console.log('accountsChanged', accounts);
         setAccountDetails({
-            provider,
+            ...account,
             address: accounts[0],
-            signer,
-            web3Provider,
-            network 
         })
       }
 
