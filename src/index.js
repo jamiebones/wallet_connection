@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { WalletProvider } from "./walletContext";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <WalletProvider>
+        <App />
+    </WalletProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
